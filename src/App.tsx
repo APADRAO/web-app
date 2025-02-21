@@ -1,15 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button } from '@mui/material';
+import { Button, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRouts } from './routes';
+import { LightTheme } from './shared/themes';
 
 function App() {
   return (
-    <BrowserRouter>
-    <AppRouts></AppRouts>
-    </BrowserRouter>
+    <ThemeProvider theme={LightTheme}>
+      <BrowserRouter>
+      <Button variant='contained' color='primary'>TESTE</Button>
+      <AppRouts></AppRouts>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
