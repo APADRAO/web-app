@@ -1,23 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRouts } from './routes';
-import { LightTheme } from './shared/themes';
+import { AppThemeProvider} from './shared/contexts/themeContext';
 
-function App() {
+export const App = () => {
   return (
-    <ThemeProvider theme={LightTheme}>
-      <BrowserRouter>
-      <Button variant='contained' color='primary'>TESTE</Button>
-      <AppRouts></AppRouts>
-      </BrowserRouter>
-    </ThemeProvider>
+      <AppThemeProvider>
+          <BrowserRouter>
+              <AppRouts></AppRouts>
+          </BrowserRouter>
+      </AppThemeProvider>
   );
 }
 
-export default App;
 /*<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
