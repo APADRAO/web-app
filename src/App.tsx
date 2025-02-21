@@ -2,10 +2,19 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRouts } from './routes';
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
+    <AppRouts></AppRouts>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+/*<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p> 
@@ -20,8 +29,4 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
-  );
-}
-
-export default App;
+    </div>*/
