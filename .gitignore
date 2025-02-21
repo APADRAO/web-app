@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/.vs/web-app/FileContentIndex/289ca66f-4ada-4fdb-85db-d2eddc93e3f2.vsidx
+/.vs/web-app/FileContentIndex/a340b56d-16cc-46c6-953a-b0a698f5252b.vsidx
+/.vs/web-app/FileContentIndex/b5fb5c73-b3d4-415a-ad7c-b10d35e69b90.vsidx
+/.vs/web-app/FileContentIndex/cbeb69a9-0a79-455d-82e3-f8fc806f0b46.vsidx
+/.vs/web-app/FileContentIndex/b8f9c872-dc01-4c79-80a1-50977fcbce5d.vsidx
+/.vs/web-app/FileContentIndex/8c0f2ee8-3957-4cb8-a293-95340c813630.vsidx
+*.vsidx
+/.vs/slnx.sqlite
