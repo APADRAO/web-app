@@ -1,20 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRouts } from './routes';
 import { AppThemeProvider } from './shared/contexts/themeContext';
 import { MenuLateral } from './shared/components'
+import { DrawerProvider } from './shared/contexts';
 
 export const App = () => {
   return (
-      <AppThemeProvider>
+    <AppThemeProvider>
+      <DrawerProvider>
           <MenuLateral>
           <BrowserRouter>
               <AppRouts></AppRouts>
               </BrowserRouter>
           </MenuLateral>
-      </AppThemeProvider>
+        </DrawerProvider>
+    </AppThemeProvider>
   );
 }
 
