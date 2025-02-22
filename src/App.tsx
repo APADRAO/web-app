@@ -3,14 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRouts } from './routes';
-import { AppThemeProvider} from './shared/contexts/themeContext';
+import { AppThemeProvider } from './shared/contexts/themeContext';
+import { MenuLateral } from './shared/components'
 
 export const App = () => {
   return (
       <AppThemeProvider>
+          <MenuLateral>
           <BrowserRouter>
               <AppRouts></AppRouts>
-          </BrowserRouter>
+              </BrowserRouter>
+          </MenuLateral>
       </AppThemeProvider>
   );
 }
