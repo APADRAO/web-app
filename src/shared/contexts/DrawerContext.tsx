@@ -6,7 +6,7 @@ interface IDrawerContextData {
 }
 
 const DrawerContext = createContext({} as IDrawerContextData);
-export const useAppDrawerContext = () => {
+export const useDrawerContext = () => {
 	return useContext(DrawerContext)
 }
 interface IAppDrawerProviderProps{

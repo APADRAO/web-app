@@ -1,6 +1,7 @@
-import { List } from "@mui/icons-material";
-import { Avatar, Box, Divider, Drawer, Icon,  ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from "@mui/material"
-import { useAppDrawerContext } from "../../contexts";
+
+import { Avatar, Box, Divider, Drawer, Icon, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme, List as MuiList, SvgIcon } from "@mui/material"
+import { useDrawerContext } from "../../contexts";
+import { useIconeContext } from "../../contexts/IconeContexts";
 
 interface IMenu {
 	children: React.ReactNode
@@ -9,10 +10,12 @@ interface IMenu {
 export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 	const theme = useTheme();
 	const smDom = useMediaQuery(theme.breakpoints.down('sm'));
-	const { IsDrawerOpen} = useAppDrawerContext()
+	const { IsDrawerOpen, toggleDrawerOpen } = useDrawerContext();
+	const { selectedIcons, setIcon } = useIconeContext();
+
 	return (
 		<>
-			<Drawer open={IsDrawerOpen} variant= {smDom ? 'temporary' :'permanent'}>
+			<Drawer open={IsDrawerOpen} variant={smDom ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen}>
 				<Box width={theme.spacing(28)} height='100%' display='flex' flexDirection='column'>
 					<Box width='100%' height={theme.spacing(28)} display='flex' alignItems='center' justifyContent='center'>
 						<Avatar
@@ -21,18 +24,24 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 					</Box>
 					<Divider />
 					<Box flex={1}>
-						<List component='nav'>
+						<MuiList component='nav'>
 							<ListItemButton>
 								<ListItemIcon>
-									<Icon>home</Icon>
+									{selectedIcons.home}
 								</ListItemIcon>
+								<ListItemText primary='Página Inicial' />
 							</ListItemButton>
-							<ListItemText primary='Pagina Inicial' />
-						</List>
+							<ListItemButton>
+								<ListItemIcon >
+									{selectedIcons.settings}
+								</ListItemIcon>
+								<ListItemText primary='Settings' />
+							</ListItemButton>
+						</MuiList>
 					</Box>
 				</Box>
 			</Drawer>
-			<Box height='100vh' marginLeft={smDom ? 0 : theme.spacing(28)} >
+			<Box height='100vh' marginLeft={smDom ? 0 : theme.spacing(28)}>
 				{children}
 			</Box>
 		</>

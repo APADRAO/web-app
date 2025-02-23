@@ -5,16 +5,19 @@ import { AppRouts } from './routes';
 import { AppThemeProvider } from './shared/contexts/themeContext';
 import { MenuLateral } from './shared/components'
 import { DrawerProvider } from './shared/contexts';
+import { IconeProvider } from './shared/contexts/IconeContexts';
 
 export const App = () => {
   return (
     <AppThemeProvider>
       <DrawerProvider>
+      <IconeProvider>
           <MenuLateral>
           <BrowserRouter>
               <AppRouts></AppRouts>
               </BrowserRouter>
           </MenuLateral>
+      </IconeProvider>
         </DrawerProvider>
     </AppThemeProvider>
   );

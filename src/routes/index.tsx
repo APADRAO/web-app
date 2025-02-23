@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useAppDrawerContext     } from "../shared/contexts";
+import { useDrawerContext     } from "../shared/contexts";
 
 export const AppRouts = () => {
-    const {toggleDrawerOpen } = useAppDrawerContext();
+    const {toggleDrawerOpen } = useDrawerContext();
     return (
         <Routes>
 
