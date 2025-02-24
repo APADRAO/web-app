@@ -1,9 +1,9 @@
 {
-    "pessoa":[
+    "pessoas":[
         {
             "id": "1",
-            "title": "a title",
-            "views": 100
+            "nomeCompleto": "Alexandre",
+            "email": "alexandrepadrao@hotmail.com"
           }
     ]
 }

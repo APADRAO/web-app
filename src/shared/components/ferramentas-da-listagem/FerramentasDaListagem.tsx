@@ -1,6 +1,6 @@
 import { Box, Button, Paper, TextField, useTheme } from "@mui/material"
-import { Component, ReactNode } from "react"
 import { useIconeContext } from "../../contexts/IconeContexts";
+import { Environment } from "../../environment/environment";
 
 
 interface IFerramentasDaListagemProps {
@@ -36,7 +36,7 @@ export const FerramentasDaListagem: React.FC<IFerramentasDaListagemProps> = ({
         >
            {mosrarInputBusca && ( <TextField 
             size="small"
-            placeholder="Pesquisar"
+            placeholder= {Environment.INPUT_DE_BUSCA}
             value={textoBusca}
             onChange={(e)=>aoMudarTextDeBusca?.(e.target.value)}
             />)}

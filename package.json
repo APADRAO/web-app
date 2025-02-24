@@ -17,6 +17,7 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "axios": "^1.7.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.29.0",
@@ -29,7 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "api":"npx json-server -w -p 3333 database.json",
+    "apiMock": "json-server -w -p 3333 database.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
