@@ -1,6 +1,6 @@
 
 import { Avatar, Box, Divider, Drawer, Icon, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme, List as MuiList, SvgIcon } from "@mui/material"
-import { useDrawerContext } from "../../contexts";
+import { useAppThemeContext, useDrawerContext } from "../../contexts";
 import { useIconeContext } from "../../contexts/IconeContexts";
 
 interface IMenu {
@@ -12,7 +12,7 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 	const smDom = useMediaQuery(theme.breakpoints.down('sm'));
 	const { IsDrawerOpen, toggleDrawerOpen } = useDrawerContext();
 	const { selectedIcons, setIcon } = useIconeContext();
-
+	const {toggleTheme } =useAppThemeContext();
 	return (
 		<>
 			<Drawer open={IsDrawerOpen} variant={smDom ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen}>
@@ -37,6 +37,16 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 								</ListItemIcon>
 								<ListItemText primary='Settings' />
 							</ListItemButton>
+						</MuiList>
+					</Box>
+					<Box>
+						<MuiList component='nav'>
+							<ListItemButton onClick={toggleTheme}>
+								<ListItemIcon>
+									{selectedIcons.theme}
+								</ListItemIcon>
+								<ListItemText primary='Tema' />
+							</ListItemButton>							
 						</MuiList>
 					</Box>
 				</Box>

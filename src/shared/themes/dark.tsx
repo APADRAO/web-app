@@ -4,21 +4,28 @@ import { dark, light } from '@mui/material/styles/createPalette';
 
 export const DarkTheme = createTheme({
     palette:{
+        mode: 'dark',
         primary:{
-            main: grey[700],
-            dark: grey[800],
-            light:grey[500],
-            contrastText: '#ffffff'
+            main: grey[300],
+            dark: grey[400],
+            light:grey[100],
+            contrastText: '#fffffff',
+            
         },
         secondary:{
-            main: cyan[700],
-            dark: cyan[800],
-            light:cyan[500],
-            contrastText: '#ffffff'
+            main: cyan[300],
+            dark: cyan[400],
+            light:cyan[100],
+            contrastText: '#fffffff'
         },
         background:{
             paper:'#303134',
             default:'#202124' 
+        }
+    },
+    typography:{
+        allVariants:{
+        color: 'white',
         }
     }
 });

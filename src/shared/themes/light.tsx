@@ -4,6 +4,7 @@ import { dark, light } from '@mui/material/styles/createPalette';
 
 export const LightTheme = createTheme({
     palette:{
+        mode: 'light',
         primary:{
             main: grey[700],
             dark: grey[800],
@@ -18,7 +19,12 @@ export const LightTheme = createTheme({
         },
         background:{
             paper:'#ffffff',
-            default: blue[900]
+            default: cyan[900]
+        }
+    },
+    typography:{
+        allVariants:{
+        color: 'black',
         }
     }
 });

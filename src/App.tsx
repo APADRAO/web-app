@@ -11,14 +11,14 @@ export const App = () => {
   return (
     <AppThemeProvider>
       <DrawerProvider>
-      <IconeProvider>
+        <IconeProvider>
           <MenuLateral>
-          <BrowserRouter>
+            <BrowserRouter>
               <AppRouts></AppRouts>
-              </BrowserRouter>
+            </BrowserRouter>
           </MenuLateral>
-      </IconeProvider>
-        </DrawerProvider>
+        </IconeProvider>
+      </DrawerProvider>
     </AppThemeProvider>
   );
 }
