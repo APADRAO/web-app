@@ -1,5 +1,5 @@
 import React, { createContext, JSX, useCallback, useContext, useState } from "react";
-import { Home, Menu, Settings, Info, Person, DarkMode, Add } from "@mui/icons-material"; // Ícones padrão do MUI
+import { Home, Menu, Settings, Info, Person, DarkMode, Add, Save, Delete,ArrowBack } from "@mui/icons-material"; // Ícones padrão do MUI
 
 // Interface do contexto para gerenciar os ícones
 interface IIconeContextsData {
@@ -30,7 +30,10 @@ export const IconeProvider: React.FC<IIconeContextsProviderProps> = ({ children 
     info: <Info />,
     user: <Person />,
     theme: <DarkMode />,
-    add: <Add />
+    add: <Add />,
+    save: <Save />,
+    delete:<Delete />,
+    back: <ArrowBack />
   });
 
   // Mapeamento de ícones disponíveis
@@ -41,7 +44,10 @@ export const IconeProvider: React.FC<IIconeContextsProviderProps> = ({ children 
     info: <Info />,
     user: <Person />,
     theme: <DarkMode />,
-    add: <Add />
+    add: <Add />,
+    save: <Save />,
+    delete:<Delete />,
+    back: <ArrowBack />
   };
 
   // Função para atualizar o ícone de um botão específico
