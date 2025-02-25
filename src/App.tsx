@@ -6,7 +6,9 @@ import { AppThemeProvider } from './shared/contexts/themeContext';
 import { MenuLateral } from './shared/components'
 import { DrawerProvider } from './shared/contexts';
 import { IconeProvider } from './shared/contexts/IconeContexts';
+import { setupIonicReact } from '@ionic/react';
 
+setupIonicReact();
 export const App = () => {
   return (
     <AppThemeProvider>

@@ -91,7 +91,7 @@ export const FerramenasDeDetalhe: React.FC<IFerramenasDeDetalheProps> = ({
                         onClick={aoClicarEmSalvarEFechar}
                         startIcon={selectedIcons.save}>
                         <Typography variant="button" whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden'>
-                            Salvar e Voltar
+                            Salvar e fechar
                         </Typography>
                     </Button>)}
                     {mostrarBotaoSalvarEFecharCarregando && !smDom && !mdDom &&( <Skeleton 

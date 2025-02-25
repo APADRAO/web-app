@@ -38,20 +38,59 @@ const getAll = async (page=1, filter = ''):Promise<TPessoasComTotalCount | Error
     }
 }
 
-const geById = async ():Promise<any> =>{
+const geById = async (id:number):Promise<TPessoasComTotalCount | Error> =>{
+    try {
+        const urlRelativa = `pessoas/${id}`
+        const {data, headers} = await Api.get(urlRelativa);
+        if(data){
+            return {
+                data,
+                totalCount: Number(headers['x-total-count'] || Environment.LIMITE_DE_LINHAS),
+            }
+        }
+        return new Error('Erro ao consultar registro');
 
+    } catch (error) {
+        console.error(error);
+        return new Error((error as {message:string}).message || ' Erro ao consultar registro');
+    }
 }
 
-const create = async ():Promise<any> =>{
+const create = async (dados: Omit<IDetalhePessoa, 'id'>):Promise<number | Error> =>{
+    try {
+        const urlRelativa = `pessoas`
+        const {data} = await Api.post<IDetalhePessoa>(urlRelativa, dados);
+        if(data){
+            return  data.id;
+        }
+        return new Error('Erro ao inserir registros');
 
+    } catch (error) {
+        console.error(error);
+        return new Error((error as {message:string}).message || ' Erro ao inserir registros');
+    }
 }
 
-const updateById = async ():Promise<any> =>{
-
+const updateById = async (dados: IDetalhePessoa):Promise<void | Error> =>{
+    try {
+        const urlRelativa = `pessoas/${dados.id}`
+        const {data} = await Api.put(urlRelativa, dados);
+        
+    } catch (error) {
+        console.error(error);
+        return new Error((error as {message:string}).message || ' Erro ao atualizar registro');
+    }
 }
 
-const deleteById = async ():Promise<any> =>{
-
+const deleteById = async (id:number):Promise<void | Error> =>{
+    try {
+        const urlRelativa = `pessoas/${id}`
+        const {data} = await Api.delete(urlRelativa);
+        
+    } catch (error) {
+        console.error(error);
+        return new Error((error as {message:string}).message || ' Erro ao apagar registro');
+    }
 }
 
 
