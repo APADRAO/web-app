@@ -1,6 +1,5 @@
 
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
 import { AppRouts } from './routes';
 import { AppThemeProvider } from './shared/contexts/themeContext';
 import { MenuLateral } from './shared/components'

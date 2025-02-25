@@ -3,6 +3,7 @@
         {
             "id": "1",
             "nomeCompleto": "Alexandre",
+            "cidadeid":20,
             "email": "alexandrepadrao@hotmail.com"
           }
     ]
