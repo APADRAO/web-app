@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { useIconeContext } from "../contexts/IconeContexts";
 
 interface ILayoutBasDePagina{
-    children: ReactNode;
+    children: React.ReactNode;
     titulo:string;
     barraDeFerramentas:ReactNode
 }
@@ -14,7 +14,6 @@ export const LayoutBaseDePagina: React.FC<ILayoutBasDePagina> = ({ children, tit
 	const mdDom = useMediaQuery(theme.breakpoints.down('md'));
     const { toggleDrawerOpen } = useDrawerContext()
     const { selectedIcons, setIcon } = useIconeContext();
-    
     return(
         <Box height='100%' display='flex' flexDirection='column' gap={1}>
             <Box padding={1} display='flex' alignItems='center' height={theme.spacing(smDom ? 6: mdDom ? 8 : 12)} gap={1}>
