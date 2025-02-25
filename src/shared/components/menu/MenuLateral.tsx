@@ -1,17 +1,46 @@
 
-import { Avatar, Box, Divider, Drawer, Icon, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme, List as MuiList, SvgIcon } from "@mui/material"
+import { Avatar, Box, Divider, Drawer, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme, List } from "@mui/material"
 import { useAppThemeContext, useDrawerContext } from "../../contexts";
 import { useIconeContext } from "../../contexts/IconeContexts";
+import { ReactJSX } from "@emotion/react/dist/declarations/src/jsx-namespace";
+import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
+
+interface IListItemLinkProps{
+	label:string,
+	icon:ReactJSX.Element,
+	to:string
+	onClick: (() => void) | undefined
+};
+const ListItemLink: React.FC<IListItemLinkProps> =({to, icon, label, onClick}) =>{
+
+	const navigate = useNavigate();
+	const resolvedPath = useResolvedPath(to)
+	const match = useMatch({path:resolvedPath.pathname, end:false})
+	const handleClick = () =>{
+		navigate(to);
+		onClick?.();
+	};
+
+	return (
+		<ListItemButton selected={!!match} onClick={handleClick}>
+			<ListItemIcon>
+				{icon}
+			</ListItemIcon>
+			<ListItemText primary={label} />
+		</ListItemButton>
+	);
+}
+
+
 
 interface IMenu {
 	children: React.ReactNode
 }
-
 export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 	const theme = useTheme();
 	const smDom = useMediaQuery(theme.breakpoints.down('sm'));
-	const { IsDrawerOpen, toggleDrawerOpen } = useDrawerContext();
-	const { selectedIcons, setIcon } = useIconeContext();
+	const { IsDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
+	const { selectedIcons,  } = useIconeContext();
 	const {toggleTheme } =useAppThemeContext();
 	return (
 		<>
@@ -24,30 +53,26 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 					</Box>
 					<Divider />
 					<Box flex={1}>
-						<MuiList component='nav'>
-							<ListItemButton>
-								<ListItemIcon>
-									{selectedIcons.home}
-								</ListItemIcon>
-								<ListItemText primary='Página Inicial' />
-							</ListItemButton>
-							<ListItemButton>
-								<ListItemIcon >
-									{selectedIcons.settings}
-								</ListItemIcon>
-								<ListItemText primary='Settings' />
-							</ListItemButton>
-						</MuiList>
+						<List component='nav'>
+						{drawerOptions.map(drawerOption => (
+							<ListItemLink
+								key={drawerOption.path}
+								icon={drawerOption.icon}
+								to={drawerOption.path}
+								label={drawerOption.label}
+								onClick={smDom?toggleDrawerOpen:undefined}
+							/>))}
+						</List>
 					</Box>
 					<Box>
-						<MuiList component='nav'>
+						<List component='nav'>
 							<ListItemButton onClick={toggleTheme}>
 								<ListItemIcon>
 									{selectedIcons.theme}
 								</ListItemIcon>
 								<ListItemText primary='Tema' />
 							</ListItemButton>							
-						</MuiList>
+						</List>
 					</Box>
 				</Box>
 			</Drawer>

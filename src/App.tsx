@@ -15,9 +15,7 @@ export const App = () => {
       <DrawerProvider>
         <IconeProvider>
           <MenuLateral>
-            <BrowserRouter>
               <AppRouts></AppRouts>
-            </BrowserRouter>
           </MenuLateral>
         </IconeProvider>
       </DrawerProvider>
