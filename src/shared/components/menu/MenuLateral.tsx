@@ -4,6 +4,7 @@ import { useAppThemeContext, useDrawerContext } from "../../contexts";
 import { useIconeContext } from "../../contexts/IconeContexts";
 import { ReactJSX } from "@emotion/react/dist/declarations/src/jsx-namespace";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
+import logo from '../../../logo.svg';
 
 interface IListItemLinkProps{
 	label:string,
@@ -49,7 +50,8 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 					<Box width='100%' height={theme.spacing(28)} display='flex' alignItems='center' justifyContent='center'>
 						<Avatar
 							sx={{ height: theme.spacing(12), width: theme.spacing(12) }}
-							src="/static/images/avatar/1.jpg" />
+							src={logo} className="App-logo" alt="logo" />
+							
 					</Box>
 					<Divider />
 					<Box flex={1}>

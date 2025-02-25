@@ -1,4 +1,5 @@
-import { FerramenasDeDetalhe } from "../../shared/components"
+import { Box, Paper } from "@mui/material"
+import { FerramenasDeDetalhe, FerramentasDaListagem } from "../../shared/components"
 import { LayoutBaseDePagina } from "../../shared/layouts/LayoutBaseDePagina"
 
 
@@ -8,9 +9,11 @@ export const DashBoard = () => {
         titulo="Pagina Inicial" 
         barraDeFerramentas={(
            
-            <FerramenasDeDetalhe  mostrarBotaoSalvarEFechar/>
+            <FerramentasDaListagem mosrarInputBusca/>
         )}>
-            <> Conteudo</>
+           <Box height='100%' display='flex' flexDirection='column' gap={1} component={Paper} variant="outlined" margin={1}>
+            
+           </Box>
         </LayoutBaseDePagina>
     )
 }
