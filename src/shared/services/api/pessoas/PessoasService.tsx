@@ -22,7 +22,7 @@ export type TPessoasComTotalCount ={
 const getAll = async (page=1, filter = ''):Promise<TPessoasComTotalCount | Error> =>{
 
     try {
-        const urlRelativa = `pessoas?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&nomeCompleto=${filter}`
+        const urlRelativa = `pessoas?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`
         const {data, headers} = await Api.get(urlRelativa);
         if(data){
             return {
@@ -74,7 +74,7 @@ const create = async (dados: Omit<IDetalhePessoa, 'id'>):Promise<number | Error>
 const updateById = async (dados: IDetalhePessoa):Promise<void | Error> =>{
     try {
         const urlRelativa = `pessoas/${dados.id}`
-        const {data} = await Api.put(urlRelativa, dados);
+        await Api.put(urlRelativa, dados);
         
     } catch (error) {
         console.error(error);
@@ -85,7 +85,7 @@ const updateById = async (dados: IDetalhePessoa):Promise<void | Error> =>{
 const deleteById = async (id:number):Promise<void | Error> =>{
     try {
         const urlRelativa = `pessoas/${id}`
-        const {data} = await Api.delete(urlRelativa);
+        await Api.delete(urlRelativa);
         
     } catch (error) {
         console.error(error);
