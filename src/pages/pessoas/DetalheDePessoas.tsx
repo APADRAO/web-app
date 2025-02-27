@@ -1,12 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { LayoutBaseDePagina } from "../../shared/layouts/LayoutBaseDePagina";
 import { FerramenasDeDetalhe } from "../../shared/components";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { PessoasServices } from "../../shared/services/api/pessoas/PessoasService";
-import { Box, Grid, Grid2, LinearProgress, Paper, TextField, Typography } from "@mui/material";
-import { Form } from "@unform/web";
-import { VtextField } from "../../shared/forms";
-import { FormHandles, Scope } from "@unform/core";
+import { Box, Grid2, LinearProgress, Paper, Typography } from "@mui/material";
+import { VtextField, VForm, useVForm } from "../../shared/forms";
 
 interface IFormData{
     cidadeid:number
@@ -18,8 +16,8 @@ export const DetalheDePessoas: React.FC = () =>{
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [nome, setNome] = useState('');
+    const {formRef, save, saveAndNew, saveAndClose, isSaveAndNew, isSaveAndClose} = useVForm();
 
-    const formRef = useRef<FormHandles>(null)
 
     useEffect(()=>{
         if(id!=='nova'){
@@ -35,6 +33,12 @@ export const DetalheDePessoas: React.FC = () =>{
                     formRef.current?.setData(result);
                 }
             })
+        }else{
+            formRef.current?.setData?.({
+                nomeCompleto: '',
+                cidadeid:'',
+                email:''
+            })
         }
 
     },[id])
@@ -48,7 +52,11 @@ export const DetalheDePessoas: React.FC = () =>{
                     if(result instanceof Error){
                         alert(result.message);
                     }else{
-                        navigate(`/pessoas/detalhe/${result}`)
+                        if(isSaveAndClose()){
+                            navigate('/pessoas');
+                        }else{
+                            navigate(`/pessoas/detalhe/${result}`)
+                        }  
                         alert('Criado com sucesso');
                     }
                 }
@@ -60,7 +68,11 @@ export const DetalheDePessoas: React.FC = () =>{
                     if(result instanceof Error){
                         alert(result.message);
                     }else{
-                        navigate(`/pessoas/detalhe/${id}`)
+                        if(isSaveAndClose()){
+                            navigate('/pessoas');
+                        }else{
+                            navigate(`/pessoas/detalhe/${id}`)
+                        }  
                         alert('Alterado com sucesso');
                     }
                 }
@@ -91,60 +103,64 @@ export const DetalheDePessoas: React.FC = () =>{
             mostrarBotaoApagar={id!='nova'}
             mostrarBotaoNovo={id!='nova'}
 
-            aoClicarEmSalvar={()=>formRef.current?.submitForm()}
-            aoClicarEmSalvarEFechar={()=>formRef.current?.submitForm()}
+            aoClicarEmSalvar={save}
+            aoClicarEmSalvarEFechar={saveAndClose}
             aoClicarEmApagar={()=>handleDelete(Number(id))}
             aoClicarEmNovo={()=> navigate('/pessoas/detalhe/nova')}
             aoClicarEmVoltar={()=>navigate('/pessoas')}
         />
     }>
-        
-        <Form ref={formRef} onSubmit={handleSave} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} >
-       <Box margin={1} display='flex' flexDirection='column' component={Paper}>
-       {isLoading&&(
-        <Grid2  padding={2} spacing={2}>
-            <LinearProgress variant='indeterminate'/>
-        </Grid2>)}
-        <Grid2  padding={2} spacing={2}>
-            <Typography variant="h6">Geral</Typography>
-        </Grid2>
-        <Grid2 container direction='column' padding={2} spacing={2}>
-            <Grid2 container direction="row" >
-                <Grid2 size={12}>
-                    <VtextField 
-                    fullWidth
-                    name="nomeCompleto"
-                    label="Nome Completo"
-                    disabled={isLoading}
-                    onChange={e=>setNome(e.target.value)}
-                    />
+        <VForm ref={formRef} onSubmit={handleSave} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} >
+            <Box margin={1} display='flex' flexDirection='column' component={Paper}>
+            {isLoading&&(
+                <Grid2  padding={2} spacing={2}>
+                    <LinearProgress variant='indeterminate'/>
+                </Grid2>)}
+                <Grid2  padding={2} spacing={2}>
+                    <Typography variant="h6">Geral</Typography>
                 </Grid2>
-            </Grid2>
-            <Grid2 container direction="row" >
-                <Grid2 size={12}>
-                    <VtextField  
-                    fullWidth
-                    name="email"
-                    label="Email"
-                    disabled={isLoading}
-                    />
+                <Grid2 container direction='column' padding={2} spacing={2}>
+                    <Grid2 container direction="row" >
+                        <Grid2 size={12}>
+                            <VtextField 
+                            fullWidth
+                            name="nomeCompleto"
+                            label="Nome Completo"
+                            disabled={isLoading}
+                            onChange={e=>setNome(e.target.value)}
+                            />
+                        </Grid2>
+                    </Grid2>
+                    <Grid2 container direction="row" >
+                        <Grid2 size={12}>
+                            <VtextField  
+                            fullWidth
+                            name="email"
+                            label="Email"
+                            disabled={isLoading}
+                            />
+                        </Grid2>
+                    </Grid2>
+                    <Grid2 container direction="row" >
+                        <Grid2 size={12}>
+                            <VtextField  
+                            fullWidth
+                            name="cidadeid"
+                            label="Cidade"
+                            disabled={isLoading}
+                            />
+                        </Grid2>
+                    </Grid2>
                 </Grid2>
-            </Grid2>
-            <Grid2 container direction="row" >
-                <Grid2 size={12}>
-                    <VtextField  
-                    fullWidth
-                    name="cidadeid"
-                    label="Cidade"
-                    disabled={isLoading}
-                    />
-                </Grid2>
-            </Grid2>
-        </Grid2>
-       </Box>
-        
+            </Box>
+        </VForm>
+    </LayoutBaseDePagina>
+    );
+    
+}
 
-        {/*[1,2,3,4].map((_,index)=>(
+/*
+     {[1,2,3,4].map((_,index)=>(
             <Scope key='' path={`endereco[${index}]`}>
                 <VtextField name='rua'/>
                 <VtextField name='numero'/>
@@ -153,12 +169,8 @@ export const DetalheDePessoas: React.FC = () =>{
                 <VtextField name='pais'/>
             </Scope>
 
-        ))*/}
-        </Form>
-        {/*isLoading&&(
+        ))}
+        {isLoading&&(
             <LinearProgress variant='indeterminate'/>
-        )*/}
-        
-    </LayoutBaseDePagina>
-    );
-}
+        )}
+         */
