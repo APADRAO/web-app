@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { LayoutBaseDePagina } from "../../shared/layouts/LayoutBaseDePagina";
 import { FerramentasDaListagem } from "../../shared/components";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { IListagenPessoa, PessoasServices } from "../../shared/services/api/pessoas/PessoasService";
 import { useDebounce } from "../../shared/hooks";
-import { LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from "@mui/material";
+import { IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from "@mui/material";
 import { Environment } from "../../shared/environment/environment";
+import { useIconeContext } from "../../shared/contexts/IconeContexts";
 
 export const ListagenDePessoa: React.FC = () => {
     const [ searchParams, setSearchParams] = useSearchParams();
@@ -20,6 +21,8 @@ export const ListagenDePessoa: React.FC = () => {
     const [rows, setRows] = useState<IListagenPessoa[]>([]);
     const [totalCount, setTotalCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const { selectedIcons,  } = useIconeContext();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         setIsLoading(true);
@@ -38,8 +41,23 @@ export const ListagenDePessoa: React.FC = () => {
             })
         });
         
-    },[busca, pagina])
+    },[busca, pagina]);
 
+    const handleDelete = (id:number) =>{
+        if(window.confirm('Realmente deseja apagar?')){
+            PessoasServices.deleteById(id)
+            .then(result =>{
+                if(result instanceof Error){
+                    alert(result.message);
+                }else{
+                    setRows(oldRows => [
+                        ...oldRows.filter(oldRow =>oldRow.id !==id)
+                    ]);
+                    alert('Apagado com sucesso!');
+                }
+            });
+        }
+    }
 
     return (
         <LayoutBaseDePagina
@@ -49,6 +67,7 @@ export const ListagenDePessoa: React.FC = () => {
                     mosrarInputBusca
                     textoBusca={busca}
                     textoBotaoNovo="Nova"
+                    aoClicaremNovo={()=> navigate('/pessoas/detalhe/nova')}
                     aoMudarTextDeBusca= {texto => setSearchParams({busca:texto, pagina:'1' },{replace:true})}
             />
             }
@@ -65,7 +84,14 @@ export const ListagenDePessoa: React.FC = () => {
                     <TableBody>
                         {rows.map(row=>(
                             <TableRow key={row.id}>
-                            <TableCell>Ações</TableCell>
+                            <TableCell>
+                                <IconButton size="small" onClick={()=> handleDelete(row.id)}>
+                                    {selectedIcons.delete}
+                                </IconButton>
+                                <IconButton size="small" onClick={()=> navigate(`/pessoas/detalhe/${row.id}`)}>
+                                    {selectedIcons.edit}
+                                </IconButton>
+                            </TableCell>
                             <TableCell>{row.nomeCompleto}</TableCell>
                             <TableCell>{row.email}</TableCell>
                         </TableRow>

@@ -38,15 +38,12 @@ const getAll = async (page=1, filter = ''):Promise<TPessoasComTotalCount | Error
     }
 }
 
-const geById = async (id:number):Promise<TPessoasComTotalCount | Error> =>{
+const geById = async (id:number):Promise<IDetalhePessoa | Error> =>{
     try {
         const urlRelativa = `pessoas/${id}`
         const {data, headers} = await Api.get(urlRelativa);
         if(data){
-            return {
-                data,
-                totalCount: Number(headers['x-total-count'] || Environment.LIMITE_DE_LINHAS),
-            }
+            return  data
         }
         return new Error('Erro ao consultar registro');
 

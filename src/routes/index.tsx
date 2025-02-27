@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useDrawerContext     } from "../shared/contexts";
 import { useEffect } from "react";
 import { useIconeContext } from "../shared/contexts/IconeContexts";
-import { DashBoard, ListagenDePessoa } from "../pages";
+import { DashBoard, DetalheDePessoas, ListagenDePessoa } from "../pages";
 
 export const AppRouts = () => {
     const { selectedIcons,  } = useIconeContext();
@@ -27,7 +27,7 @@ export const AppRouts = () => {
             <Route path="/pagina-inicial" element={<DashBoard />} />
             <Route path="*" element={<Navigate to="/pagina-inicial"/>} />
             <Route path="/pessoas" element={<ListagenDePessoa />} />
-            {/*<Route path="/cidades/detalhe/:id" element={<DashBoard />} />*/}
+            <Route path="/pessoas/detalhe/:id" element={<DetalheDePessoas />} />
         </Routes>
     );
 };
