@@ -3,14 +3,14 @@
     {
       "id": 1,
       "nomeCompleto": "Lilian Loren De Marco",
-      "email": "ssssssss",
-      "cidadeid": "9"
+      "email": "alexandrepadrao@hotmail.com",
+      "cidadeid": 1
     },
     {
       "id": 2,
-      "nomeCompleto": "Lilian 8",
-      "cidadeid": 20,
-      "email": "lilianpadrao@hotmail.com"
+      "nomeCompleto": "Alexandra M Padrao",
+      "email": "lilianpadrao@hotmail.com",
+      "cidadeid": 20
     },
     {
       "id": 3,
@@ -60,5 +60,30 @@
       "cidadeid": "PRAIA GRANDE",
       "id": 10
     }
-  ]
+  ],
+  "cidades": [
+    {
+      "nome": "São Paulo",
+      "uf": "SP",
+      "id": 1
+    },
+    {
+      "nome": "Ribeirao Preto",
+      "uf": "SP",
+      "id": 2
+    },
+    {
+      "nome": "Porto Alegre",
+      "uf": "RS",
+      "id": 3
+    },
+    {
+      "nome": "Brasilia",
+      "uf": "DF",
+      "id": 4
+    }
+  ],
+  "auth":{
+    "accessToken":"aaaaaaaaaaa.bbbbbbbbbbbbb.ccccccccccccc"
+  }
 }

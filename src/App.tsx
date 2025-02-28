@@ -1,24 +1,35 @@
 
 import './App.css';
+import './shared/forms/TraducaoYup'
 import { AppRouts } from './routes';
 import { AppThemeProvider } from './shared/contexts/themeContext';
-import { MenuLateral } from './shared/components'
-import { DrawerProvider } from './shared/contexts';
+import { Login, MenuLateral } from './shared/components'
+import { AuthProvider, DrawerProvider } from './shared/contexts';
 import { IconeProvider } from './shared/contexts/IconeContexts';
 import { setupIonicReact } from '@ionic/react';
+
 
 setupIonicReact();
 export const App = () => {
   return (
-    <AppThemeProvider>
-      <DrawerProvider>
-        <IconeProvider>
-          <MenuLateral>
-              <AppRouts></AppRouts>
-          </MenuLateral>
-        </IconeProvider>
-      </DrawerProvider>
-    </AppThemeProvider>
+    <AuthProvider>
+      <AppThemeProvider>
+
+        <Login>
+
+          <DrawerProvider>
+            <IconeProvider>
+
+              <MenuLateral>
+                  <AppRouts></AppRouts>
+              </MenuLateral>
+            </IconeProvider>
+          </DrawerProvider>
+
+        </Login>
+        
+      </AppThemeProvider>
+    </AuthProvider>
   );
 }
 

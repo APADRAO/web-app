@@ -1,2 +1,3 @@
-export * from './DrawerContext'
+export * from './DrawerContext';
 export * from './themeContext';
+export * from './AuthContext';

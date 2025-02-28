@@ -1,6 +1,6 @@
 
 import { Avatar, Box, Divider, Drawer, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme, List } from "@mui/material"
-import { useAppThemeContext, useDrawerContext } from "../../contexts";
+import { useAppThemeContext, useAuthContex, useDrawerContext } from "../../contexts";
 import { useIconeContext } from "../../contexts/IconeContexts";
 import { ReactJSX } from "@emotion/react/dist/declarations/src/jsx-namespace";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
@@ -43,6 +43,7 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 	const { IsDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 	const { selectedIcons,  } = useIconeContext();
 	const {toggleTheme } =useAppThemeContext();
+	const {logout } =useAuthContex();
 	return (
 		<>
 			<Drawer open={IsDrawerOpen} variant={smDom ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen}>
@@ -73,6 +74,12 @@ export const MenuLateral: React.FC<IMenu> = ({ children }) => {
 									{selectedIcons.theme}
 								</ListItemIcon>
 								<ListItemText primary='Tema' />
+							</ListItemButton>	
+							<ListItemButton onClick={logout}>
+								<ListItemIcon>
+									{selectedIcons.logout}
+								</ListItemIcon>
+								<ListItemText primary='Logout' />
 							</ListItemButton>							
 						</List>
 					</Box>
