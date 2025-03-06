@@ -13,7 +13,7 @@ export const ListagenDeCidades: React.FC = () => {
     const {debounce} = useDebounce(300,false);
     const busca = useMemo(() => {
         return searchParams.get('busca') || '';
-    }, [searchParams])
+    }, [searchParams]) 
     const pagina = useMemo(() => {
         return Number(searchParams.get('pagina') || '1');
     }, [searchParams])

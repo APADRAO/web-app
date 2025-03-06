@@ -134,7 +134,7 @@ export const DetalheDeCidades: React.FC = () =>{
                 <Grid2  padding={2} spacing={2}>
                     <LinearProgress variant='indeterminate'/>
                 </Grid2>)}
-                <Grid2  padding={2} spacing={2}>
+                <Grid2  padding={2} spacing={2}> 
                     <Typography variant="h6">Geral</Typography>
                 </Grid2>
                 <Grid2 container direction='column' padding={2} spacing={2}>

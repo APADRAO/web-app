@@ -136,7 +136,7 @@ export const DetalheDePessoas: React.FC = () =>{
             <Box margin={1} display='flex' flexDirection='column' component={Paper}>
             {isLoading&&(
                 <Grid2  padding={2} spacing={2}>
-                    <LinearProgress variant='indeterminate'/>
+                    <LinearProgress variant='indeterminate'/> 
                 </Grid2>)}
                 <Grid2  padding={2} spacing={2}>
                     <Typography variant="h6">Geral</Typography>

@@ -19,7 +19,7 @@ export const VtextField: React.FC<TVtextFieldProps> = ({name, ...rest}) =>{
     },[registerField,fieldName, value]);
     
     return (
-        <TextField
+        <TextField 
             {...rest}
             error={!!error}
             helperText = {error}

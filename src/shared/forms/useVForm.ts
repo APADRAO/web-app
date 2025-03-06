@@ -32,7 +32,7 @@ export const useVForm = () =>{
         save: handleSave,
         saveAndNew: handleSaveAndNew,
         saveAndClose: handleSaveAndClose,
-        isSaveAndNew: handleIsSaveAndNew,
+        isSaveAndNew: handleIsSaveAndNew, 
         isSaveAndClose: handleIsSaveAndClose
     };
 };

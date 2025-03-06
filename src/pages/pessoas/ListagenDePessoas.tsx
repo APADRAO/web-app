@@ -124,4 +124,4 @@ export const ListagenDePessoa: React.FC = () => {
             </TableContainer>
         </LayoutBaseDePagina>
     )
-}
+} 

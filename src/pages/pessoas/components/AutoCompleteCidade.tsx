@@ -16,7 +16,7 @@ interface IAutoCompleteCidadeProps{
 
 export const AutoCompleteCidade: React.FC<IAutoCompleteCidadeProps> =({isExternalLoading=false}) =>{
     const { clearError, defaultValue, error, fieldName, registerField} = useField('cidadeid')
-    const{ debounce} = useDebounce();
+    const{ debounce} = useDebounce(); 
     const [busca, setBusca] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [selectedId, setSelectedId] = useState<number | undefined>(defaultValue);
