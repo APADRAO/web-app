@@ -8,12 +8,14 @@ import { VtextField, VForm, useVForm, IVFormErrors } from "../../shared/forms";
 import * as yup from 'yup';
 
 interface IFormData{
-    nome:string
-    uf: string
+    Idcidade: number,
+    Nmcidade: string,
+    Iduf:string
 }
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    nome: yup.string().required().min(3),
-    uf: yup.string().required().min(2)
+    Idcidade: yup.number().required(),
+    Nmcidade:  yup.string().required(),
+    Iduf: yup.string().required()
 })
 
 export const DetalheDeCidades: React.FC = () =>{
@@ -34,7 +36,7 @@ export const DetalheDeCidades: React.FC = () =>{
                     alert(result.message);
                     navigate('/cidades');
                 }else{
-                    setNome(result.nome);
+                    setNome(result.Nmcidade);
                     formRef.current?.setData(result);
                 }
             })
@@ -53,7 +55,7 @@ export const DetalheDeCidades: React.FC = () =>{
         .then((dadosValid)=>{
             setIsLoading(true)
             if(id=='nova'){
-                CidadesServices.create(dadosValid).then(
+                CidadesServices.create(dados).then(
                     (result)=>{
                         setIsLoading(false)
                         if(result instanceof Error){
@@ -69,7 +71,7 @@ export const DetalheDeCidades: React.FC = () =>{
                     }
                 )            
             }else{
-                CidadesServices.updateById({id:Number(id), ...dadosValid}).then(
+                CidadesServices.updateById({ ...dadosValid}).then(
                     (result)=>{
                         setIsLoading(false)
                         if(result instanceof Error){

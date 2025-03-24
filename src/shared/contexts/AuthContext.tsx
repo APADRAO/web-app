@@ -29,8 +29,8 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) =>{
             return result.message
         }
         else{
-            sessionStorage.setItem(SESSION_STORAGE_KEY_ACCESSTOKEN, JSON.stringify(result.accessToken))
-            setAccessToken(result.accessToken);
+            sessionStorage.setItem(SESSION_STORAGE_KEY_ACCESSTOKEN, JSON.stringify(result.dados?.token))
+            setAccessToken(result.dados?.token);
         }
 
     },[])

@@ -1,13 +1,41 @@
 import { Api } from "../axios-config";
 
 interface IAuth{
-    accessToken:string;
+  status?: boolean,
+  message?: string
+  tp?: number,
+  dados?: {
+    role?: {
+      roleId?: number,
+      roleNome?: string,
+      roleDescricao?: string,
+      roleDtCriacao?: Date,
+      roleFgAtivo?: number,
+      roleDtAlteracao?: Date,
+      tbHabilitaWebits?: [],
+      tbUsuarios?: []
+    },
+    token?: string,
+    user?: string,
+    authentication?: string
+  },
+  arquivo?: any
 }
 
+interface IPstUser{
+    userName: string,
+    pass: string
+}
+
+
 const auth = async (email:string, password:string):Promise<IAuth | Error> =>{
+    const pst:IPstUser={
+        userName: email,
+        pass:password
+    }
     try {
-        const urlRelativa = `auth/`
-        const {data} = await Api.get(urlRelativa,{data:{email,password}});
+        const urlRelativa = `/Authentication/v2/`
+        const {data} = await Api.post(urlRelativa,pst);
         if(data){
             return  data
         }

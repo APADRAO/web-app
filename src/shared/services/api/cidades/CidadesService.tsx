@@ -2,14 +2,14 @@ import { Environment } from '../../../environment/environment';
 import {Api} from '../axios-config';
 
 export interface IListagenCidade{
-    id: number,
-    nome: string,
-    uf:string
+    Idcidade: number,
+    Nmcidade: string,
+    Iduf:string
 }
 export interface IDetalheCidade{
-    id: number,
-    nome: string,
-    uf:string
+    Idcidade: number,
+    Nmcidade: string,
+    Iduf:string
 }
 
 export type TCidadesComTotalCount ={
@@ -20,13 +20,16 @@ export type TCidadesComTotalCount ={
 const getAll = async (page=1, filter = ''):Promise<TCidadesComTotalCount | Error> =>{
 
     try {
-        const urlRelativa = `Cidades?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&nome_like=${filter}`
+        const urlRelativa = `/api/v3/Localidade/GetCidade?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&nome_like=${filter}`
         const {data, headers} = await Api.get(urlRelativa);
         if(data){
-            return {
-                data,
-                totalCount: Number(headers['x-total-count'] || Environment.LIMITE_DE_LINHAS),
+            if(data.status){
+                return {
+                    data,
+                    totalCount: Number(headers['x-total-count'] || Environment.LIMITE_DE_LINHAS),
+                }
             }
+           
         }
         return new Error('Erro ao listar registros');
 
@@ -51,12 +54,12 @@ const geById = async (id:number):Promise<IDetalheCidade | Error> =>{
     }
 }
 
-const create = async (dados: Omit<IDetalheCidade, 'id'>):Promise<number | Error> =>{
+const create = async (dados: Omit<IDetalheCidade, 'Idcidade'>):Promise<number | Error> =>{
     try {
         const urlRelativa = `Cidades`
         const {data} = await Api.post<IDetalheCidade>(urlRelativa, dados);
         if(data){
-            return  data.id;
+            return  data.Idcidade;
         }
         return new Error('Erro ao inserir registros');
 
@@ -68,7 +71,7 @@ const create = async (dados: Omit<IDetalheCidade, 'id'>):Promise<number | Error>
 
 const updateById = async (dados: IDetalheCidade):Promise<void | Error> =>{
     try {
-        const urlRelativa = `Cidades/${dados.id}`
+        const urlRelativa = `Cidades/${dados.Idcidade}`
         await Api.put(urlRelativa, dados);
         
     } catch (error) {

@@ -44,8 +44,8 @@ export const AutoCompleteCidade: React.FC<IAutoCompleteCidadeProps> =({isExterna
                             result.data.map(
                                 cidade=>(
                                     {
-                                        id:cidade.id,
-                                        label:cidade.nome
+                                        id:cidade.Idcidade,
+                                        label:cidade.Nmcidade
                                     }
                                 )
                             )

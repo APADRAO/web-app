@@ -51,7 +51,7 @@ export const ListagenDeCidades: React.FC = () => {
                     alert(result.message);
                 }else{
                     setRows(oldRows => [
-                        ...oldRows.filter(oldRow =>oldRow.id !==id)
+                        ...oldRows.filter(oldRow =>oldRow.Idcidade !==id)
                     ]);
                     alert('Apagado com sucesso!');
                 }
@@ -83,17 +83,17 @@ export const ListagenDeCidades: React.FC = () => {
                     </TableHead>
                     <TableBody>
                         {rows.map(row=>(
-                            <TableRow key={row.id}>
+                            <TableRow key={row.Idcidade}>
                             <TableCell>
-                                <IconButton size="small" onClick={()=> handleDelete(row.id)}>
+                                <IconButton size="small" onClick={()=> handleDelete(row.Idcidade)}>
                                     {selectedIcons.delete}
                                 </IconButton>
-                                <IconButton size="small" onClick={()=> navigate(`/cidades/detalhe/${row.id}`)}>
+                                <IconButton size="small" onClick={()=> navigate(`/cidades/detalhe/${row.Idcidade}`)}>
                                     {selectedIcons.edit}
                                 </IconButton>
                             </TableCell>
-                            <TableCell>{row.nome}</TableCell>
-                            <TableCell>{row.uf}</TableCell>
+                            <TableCell>{row.Iduf}</TableCell>
+                            <TableCell>{row.Iduf}</TableCell>
                         </TableRow>
                         ))}
                     </TableBody>
